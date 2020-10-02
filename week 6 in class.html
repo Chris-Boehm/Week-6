@@ -1,0 +1,132 @@
+<html>
+	
+	<head>
+		<title>
+			In class week 6
+		</title>
+		
+		<style>
+			
+			img {
+			
+				height: 200px;
+				width: 200px;
+				
+			}
+			
+			div#output {
+				width: 600px;
+				height: 200px;
+				background-color: #FFF8E7;
+				overflow-y: scroll;
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<h1>Topics for Learning</h1>
+		
+		<ul>
+			<li>Inline Javascript</li>
+			<li>Outputting Messages</li>
+			<li>Methods and "this"</li>
+			<li>Loot Chance</li>
+			<li>Local Storage</li>
+			<li>Dynamic Images</li>
+			<li>RPS Game dynamic</li>
+		</ul>
+		
+		<img src="" />
+		
+		<button>Display Random Image</button>
+		
+		<button id="loot">Loot</button>
+		
+		<div id="output"></div>
+		
+		<script>
+			//Dynamic images
+			var images = [
+				{
+					name: "cave",
+					image:"https://static.nationalgeographic.co.uk/files/styles/image_3200/public/blind-cavefish-meghalaya-caves-03.jpg?w=1600"
+				},
+					
+				{
+					name: "Steve",
+					image: "https://cdn.collider.com/wp-content/uploads/2020/10/super-smash-bros-ultimate-minecraft-steve-600x307.png"
+				},
+					
+				{
+					name: "globgabgalab",
+					image: "https://images.genius.com/f44f6c73513dd32f7c562686bc8aca17.1000x563x1.jpg"
+				},
+			];
+			
+			var imageTag = document.querySelectorAll("img")[0];
+			var buttons = document.querySelector("button");
+			
+			buttons.addEventListener("click", randomimg);
+			
+			function randomimg () {
+				var randomnumber = Math.floor(Math.random() * images.length);
+				var imgUrl = images[randomnumber].image;
+				imageTag.src = imgUrl;
+			}
+			
+			var item = [
+				{
+					name: "Fat Cock",
+					chance: .05
+				},
+					
+				{
+					name: "Deez Nuts",
+					chance: .5
+				},
+				
+				{
+					name: "Big Chicken",
+					chance: .09
+				}
+			];
+			
+			var loots = document.querySelector("#loot");
+			
+			loots.addEventListener("click", lootChance);
+			
+			function lootChance () {
+				var lootDrop = Math.random();
+				console.log(lootDrop);
+				var findableItems = [];
+				item.forEach( function (item){
+				
+				
+				if (item.chance > lootDrop) {
+					findableItems.push(item);
+				}
+				});
+				var randomItemNumber = Math.floor(Math.random() * findableItems.length);
+				if(findableItems.length == 0) {
+					console.log("No Items Dropped!");
+				} else {
+					console.log(findableItems[randomItemNumber]);
+				}
+				
+				
+				
+			}
+			
+			var outputtext = document.getElementById("output");
+			
+			function createOutput (message) {
+				outputtext.innerHTML = "<p>" + message + "</p>" + outputtext.innerHTML;
+			}
+			
+		</script>
+		</body>
+	
+	<html>
